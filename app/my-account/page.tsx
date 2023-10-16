@@ -11,10 +11,16 @@ export default async function Page() {
 
   const { data } = await client.query({
     query: gql`
-      query GetViewer {
+      query GetViewerDraftAndPublishedPosts {
         viewer {
           name
-          posts {
+          draftPosts: posts(where: { status: DRAFT }) {
+            nodes {
+              id
+              title
+            }
+          }
+          publishedPosts: posts(where: { status: PUBLISH }) {
             nodes {
               id
               title
@@ -31,11 +37,16 @@ export default async function Page() {
 
       <h3>My Posts</h3>
       <ul>
-        {data.viewer.posts.nodes.map((post) => (
+        {data.viewer.publishedPosts.nodes.map((post) => (
           <li key={post.id}>{post.title}</li>
         ))}
       </ul>
-
+      <h3>My Drafts</h3>
+      <ul>
+        {data.viewer.draftPosts.nodes.map((post) => (
+          <li key={post.id}>{post.title}</li>
+        ))}
+      </ul>
       <form action={onLogout}>
         <button type="submit">Logout</button>
       </form>

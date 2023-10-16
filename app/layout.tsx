@@ -1,7 +1,7 @@
-import { gql } from '@apollo/client';
-import { getClient } from '@faustwp/experimental-app-router';
-import Link from 'next/link';
-import '@/faust.config.js';
+import { gql } from "@apollo/client";
+import { getClient } from "@faustwp/experimental-app-router";
+import Link from "next/link";
+import "@/faust.config.js";
 
 export default async function RootLayout({ children }) {
   const client = await getClient();

@@ -40,10 +40,10 @@ export async function addDraftPost(formData: FormData) {
     if (data?.createPost?.post) {
       console.log("Draft post created:", data.createPost.post);
     }
-
-    revalidatePath("/my-account");
   } catch (error) {
-    console.log(error);
     throw new Error("Could not create draft post.");
+  } finally {
+    revalidatePath("/my-account");
+    redirect("/my-account");
   }
 }
