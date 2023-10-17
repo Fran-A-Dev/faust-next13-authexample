@@ -1,23 +1,14 @@
-import { getClient } from "@faustwp/experimental-app-router";
-import Link from "next/link";
 import "@/faust.config.js";
 
-export default async function RootLayout({ children }) {
-  const client = await getClient();
+import { Rubik } from "next/font/google";
+import Navbar from "./Navbar";
+const rubik = Rubik({ subsets: ["latin"] });
 
+export default async function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
-        <header>
-          <div>
-            <h3>
-              <Link href="/my-account/create-post">Draft Post</Link>
-            </h3>
-            <h3>
-              <Link href="/my-account">My Account</Link>
-            </h3>
-          </div>
-        </header>
+      <body className={rubik.className}>
+        <Navbar />
         {children}
       </body>
     </html>

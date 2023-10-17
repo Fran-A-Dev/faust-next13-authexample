@@ -11,6 +11,7 @@ export default async function Page() {
   return (
     <main>
       <h2>Create a Drafted Post</h2>
+
       <CreatePost />
     </main>
   );

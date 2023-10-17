@@ -1,9 +1,9 @@
-import { onLogin } from '@faustwp/experimental-app-router';
-import { redirect } from 'next/navigation';
+import { onLogin } from "@faustwp/experimental-app-router";
+import { redirect } from "next/navigation";
 
 export default async function Page() {
   async function loginAction(formData: FormData) {
-    'use server';
+    "use server";
 
     const res = await onLogin(formData);
 
@@ -20,14 +20,15 @@ export default async function Page() {
        */
       console.error(res.error);
     } else {
-      redirect('/my-account');
+      redirect("/my-account");
     }
   }
 
   return (
     <>
-      <h2>Login</h2>
-
+      <div>
+        <h2 className="flex justify-center ">Login Here</h2>
+      </div>
       <form action={loginAction}>
         <fieldset>
           <label htmlFor="usernameEmail">Username or Email</label>
@@ -39,7 +40,12 @@ export default async function Page() {
           <input type="password" name="password" />
         </fieldset>
 
-        <button type="submit">Login</button>
+        <button
+          className="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded"
+          type="submit"
+        >
+          Login
+        </button>
       </form>
     </>
   );
