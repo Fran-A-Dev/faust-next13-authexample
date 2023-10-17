@@ -43,7 +43,7 @@ export async function addDraftPost(formData: FormData) {
   } catch (error) {
     throw new Error("Could not create draft post.");
   } finally {
-    revalidatePath("/my-account");
-    redirect("/my-account");
+    revalidatePath("/my-account/drafts");
+    redirect("/my-account/drafts");
   }
 }

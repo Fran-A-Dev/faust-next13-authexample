@@ -11,14 +11,14 @@ export default async function Page() {
 
   const { data } = await client.query({
     query: gql`
-      query GetViewerPublishedPosts {
+      query GetViewerDraftPosts {
         viewer {
           name
-
-          publishedPosts: posts(where: { status: PUBLISH }) {
+          draftPosts: posts(where: { status: DRAFT }) {
             nodes {
               id
               title
+              content
             }
           }
         }
@@ -28,25 +28,23 @@ export default async function Page() {
 
   return (
     <>
-      <div className="flex justify-center mb-2">
+      <div className="flex justify-center">
         <h2>Welcome {data.viewer.name}!</h2>
       </div>
-      <div className="flex justify-center mb-4">
-        {" "}
-        {/* Add margin-bottom */}
-        <h3 className="font-bold underline text-blue-900">
-          My Post Titles List
-        </h3>
+      <div className="flex justify-center">
+        <h3>My Drafted Posts</h3>
       </div>
-      <div className="flex justify-center mb-12">
+      <div className="flex justify-center">
         <ul>
-          {data.viewer.publishedPosts.nodes.map((post) => (
-            <li key={post.id}>{post.title}</li>
+          {data.viewer.draftPosts.nodes.map((post) => (
+            <li className="card" key={post.id}>
+              <h4>{post.title}</h4>
+              <div dangerouslySetInnerHTML={{ __html: post.content }} />
+            </li>
           ))}
         </ul>
       </div>
-
-      <form action={onLogout} className="flex justify-center">
+      <form action={onLogout} className="flex justify-center mt-4">
         <button
           className="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded"
           type="submit"

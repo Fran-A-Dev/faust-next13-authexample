@@ -15,6 +15,7 @@ export default function Navbar() {
       <h1>Fran&apos;s Faust.js/Next 13 App Router Sample</h1>
       <Link href="/my-account">My Account</Link>
       <Link href="/my-account/create-post">Draft A Post</Link>
+      <Link href="/my-account/drafts">Drafts</Link>
     </nav>
   );
 }
