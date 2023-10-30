@@ -18,7 +18,6 @@ const CREATE_POST_MUTATION = gql`
 `;
 
 async function createClient(): Promise<ApolloClient<NormalizedCacheObject>> {
-  // Replace getAuthClient with your actual client initialization method
   const client = await import("@faustwp/experimental-app-router").then(
     ({ getAuthClient }) => getAuthClient()
   );
