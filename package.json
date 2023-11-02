@@ -16,9 +16,9 @@
     "@faustwp/core": "1.1.2",
     "@faustwp/experimental-app-router": "^0.1.0",
     "graphql": "^16.7.1",
-    "next": "^13.4.20-canary.18",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "next": "^14.0.1",
+    "react": "^0.0.0-experimental-0c6348758-20231030",
+    "react-dom": "^0.0.0-experimental-0c6348758-20231030"
   },
   "engines": {
     "node": ">=16",

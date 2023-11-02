@@ -1,43 +1,40 @@
-import { onLogin } from "@faustwp/experimental-app-router";
-import { redirect } from "next/navigation";
+"use client";
+import { useState } from "react";
+import { loginAction } from "../my-account/actions";
+// import { onLogin } from "@faustwp/experimental-app-router";
 
-export default async function Page() {
-  async function loginAction(formData: FormData) {
-    "use server";
+import { useFormState, useFormStatus } from "react-dom";
 
-    const res = await onLogin(formData);
+const initialFormState = {
+  error: null,
+};
 
-    if (res.error) {
-      /**
-       * @TODO Next.js is still working on ways persisting error messages from
-       * server actions to the client.
-       *
-       * "Displaying loading or error states currently requires using
-       * Client Components. We are exploring options for server-side functions
-       * to retrieve these values as we move forward in stability for Server Actions."
-       *
-       * @link https://nextjs.org/docs/app/building-your-application/data-fetching/forms-and-mutations#error-handling
-       */
-      console.error(res.error);
-    } else {
-      redirect("/my-account");
-    }
-  }
+export default function LoginPage() {
+  // @ts-ignore
+  const [state, formAction] = useFormState(loginAction, initialFormState);
+
+  console.log(state);
 
   return (
     <>
       <div>
-        <h2 className="flex justify-center ">Login Here</h2>
+        <h2 className="flex justify-center">Login Here</h2>
+        {state.error && (
+          <p
+            className="text-red-500"
+            dangerouslySetInnerHTML={{ __html: state.error }}
+          ></p>
+        )}
       </div>
-      <form action={loginAction}>
+      <form action={formAction}>
         <fieldset>
           <label htmlFor="usernameEmail">Username or Email</label>
-          <input type="name" name="usernameEmail" />
+          <input type="name" name="usernameEmail" required />
         </fieldset>
 
         <fieldset>
           <label htmlFor="password">Password</label>
-          <input type="password" name="password" />
+          <input type="password" name="password" required />
         </fieldset>
 
         <button
