@@ -1,5 +1,5 @@
 import SubmitButton from "@/components/SubmitButton";
-import { addDraftPost } from "../actions";
+import { addDraftPost } from "./actions";
 
 export default function CreatePost() {
   return (

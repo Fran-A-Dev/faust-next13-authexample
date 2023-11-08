@@ -1,19 +1,15 @@
 "use client";
-import { useState } from "react";
-import { loginAction } from "../my-account/actions";
-// import { onLogin } from "@faustwp/experimental-app-router";
 
-import { useFormState, useFormStatus } from "react-dom";
+import { loginAction } from "./actions";
+
+import { useFormState } from "react-dom";
 
 const initialFormState = {
   error: null,
 };
 
 export default function LoginPage() {
-  // @ts-ignore
   const [state, formAction] = useFormState(loginAction, initialFormState);
-
-  console.log(state);
 
   return (
     <>
